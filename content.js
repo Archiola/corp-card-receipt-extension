@@ -398,7 +398,7 @@ async function startExtraction({ selectedCards, dateRange, allCaptureMode = fals
 
         // 파일명: 날짜_금액_상품명 형식
         const priceStr = orderPrice ? `_${sanitizeFilename(orderPrice)}` : '';
-        filename = `법인카드_증빙/${subFolder}/${formatDateYYMMDD(orderDate)}${priceStr}_${sanitizeFilename(productName)}.png`;
+        filename = `쇼핑_영수증/${subFolder}/${formatDateYYMMDD(orderDate)}${priceStr}_${sanitizeFilename(productName)}.png`;
 
         console.log(`[WM] 저장: ${filename}`);
 

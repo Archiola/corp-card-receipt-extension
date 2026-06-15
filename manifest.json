@@ -1,9 +1,9 @@
 {
   "manifest_version": 3,
-  "name": "법인카드 거래명세서 자동저장",
-  "short_name": "법인카드 증빙",
+  "name": "쇼핑 영수증 자동저장",
+  "short_name": "영수증 자동저장",
   "version": "1.2.0",
-  "description": "쿠팡(mc)·네이버쇼핑 법인카드 거래명세서를 백그라운드에서 자동 캡처·저장합니다.",
+  "description": "쿠팡(mc)·네이버쇼핑 거래명세서를 백그라운드에서 자동 캡처·저장합니다.",
 
   "permissions": [
     "storage",
@@ -23,7 +23,7 @@
 
   "action": {
     "default_popup": "popup.html",
-    "default_title": "법인카드 거래명세서 자동저장",
+    "default_title": "쇼핑 영수증 자동저장",
     "default_icon": {
       "16": "icons/icon16.png",
       "48": "icons/icon48.png",
