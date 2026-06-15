@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>사용 설명서 — 쇼핑 영수증 자동저장</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --c-bg:       #ffffff;
+      --c-bg2:      #f5f5f7;
+      --c-bg3:      #fbfbfd;
+      --c-text:     #1d1d1f;
+      --c-sub:      #6e6e73;
+      --c-accent:   #0071e3;
+      --c-border:   rgba(0,0,0,.08);
+      --radius:     20px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+      background: var(--c-bg);
+      color: var(--c-text);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─────────────────────────────────────────────── */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,.82);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid var(--c-border);
+    }
+    .nav-inner {
+      max-width: 1000px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 28px; height: 52px;
+    }
+    .nav-logo { font-size: 16px; font-weight: 600; letter-spacing: -.3px; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a {
+      font-size: 13px; color: var(--c-sub);
+      text-decoration: none; transition: color .15s;
+    }
+    .nav-links a:hover { color: var(--c-text); }
+
+    /* ─── HERO ────────────────────────────────────────────── */
+    .hero {
+      background: linear-gradient(180deg, #fbfbfd 0%, #fff 100%);
+      text-align: center; padding: 110px 28px 90px;
+    }
+    .hero-label {
+      font-size: 13px; font-weight: 600; color: var(--c-accent);
+      letter-spacing: .6px; text-transform: uppercase; margin-bottom: 22px;
+    }
+    .hero-title {
+      font-size: clamp(44px, 7.5vw, 86px);
+      font-weight: 700; letter-spacing: -2.5px; line-height: 1.04;
+      margin-bottom: 26px;
+    }
+    .hero-sub {
+      font-size: clamp(17px, 2.5vw, 22px);
+      color: var(--c-sub); line-height: 1.65;
+      max-width: 520px; margin: 0 auto 52px;
+    }
+    .hero-chips { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+    .chip {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: var(--c-bg2); border-radius: 100px;
+      padding: 7px 18px; font-size: 13px; font-weight: 500;
+    }
+    .chip-dot { width: 7px; height: 7px; border-radius: 50%; }
+
+    /* ─── COMMON ──────────────────────────────────────────── */
+    .container { max-width: 1000px; margin: 0 auto; padding: 0 28px; }
+    .sec-label {
+      font-size: 13px; font-weight: 600; color: var(--c-accent);
+      letter-spacing: .6px; text-transform: uppercase; margin-bottom: 10px;
+    }
+    .sec-title {
+      font-size: clamp(30px, 4.5vw, 52px);
+      font-weight: 700; letter-spacing: -1.5px; line-height: 1.1;
+      margin-bottom: 14px;
+    }
+    .sec-sub {
+      font-size: 17px; color: var(--c-sub); line-height: 1.65;
+    }
+
+    /* ─── FEATURES ────────────────────────────────────────── */
+    .features { padding: 100px 0; background: var(--c-bg2); }
+    .features-header { text-align: center; margin-bottom: 56px; }
+    .feat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 14px;
+    }
+    .feat-card {
+      background: var(--c-bg); border-radius: var(--radius);
+      padding: 36px 28px;
+      box-shadow: 0 2px 16px rgba(0,0,0,.055);
+    }
+    .feat-icon {
+      width: 50px; height: 50px; border-radius: 13px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px; margin-bottom: 20px;
+    }
+    .feat-icon.blue   { background: #e5f0fd; }
+    .feat-icon.green  { background: #e4f8ee; }
+    .feat-icon.orange { background: #fff2e5; }
+    .feat-icon.purple { background: #f2ecfe; }
+    .feat-card h3 { font-size: 17px; font-weight: 600; margin-bottom: 8px; }
+    .feat-card p  { font-size: 14px; color: var(--c-sub); line-height: 1.65; }
+
+    /* ─── STEPS ───────────────────────────────────────────── */
+    .steps { padding: 100px 0; }
+    .steps-header { text-align: center; margin-bottom: 86px; }
+
+    .step {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 72px; align-items: center; margin-bottom: 110px;
+    }
+    .step:last-child { margin-bottom: 0; }
+    .step.rev .step-vis { order: -1; }
+
+    .step-num {
+      font-size: 12px; font-weight: 700; color: var(--c-accent);
+      letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px;
+    }
+    .step-title {
+      font-size: clamp(26px, 3.2vw, 40px);
+      font-weight: 700; letter-spacing: -1.2px; line-height: 1.2;
+      margin-bottom: 18px;
+    }
+    .step-desc {
+      font-size: 16px; color: var(--c-sub); line-height: 1.75;
+      margin-bottom: 26px;
+    }
+    .tips { display: flex; flex-direction: column; gap: 10px; }
+    .tip {
+      display: flex; align-items: flex-start; gap: 9px;
+      font-size: 14px; color: var(--c-sub); line-height: 1.5;
+    }
+    .tip::before {
+      content: '✓'; color: var(--c-accent); font-weight: 700;
+      flex-shrink: 0; margin-top: 1px;
+    }
+
+    /* ─── MOCKUP WRAPPERS ─────────────────────────────────── */
+    .vis-wrap {
+      background: var(--c-bg2); border-radius: 26px;
+      padding: 40px; display: flex;
+      align-items: center; justify-content: center;
+      min-height: 320px;
+    }
+
+    /* ─── POPUP MOCKUP ────────────────────────────────────── */
+    .pm {
+      background: #fff; border-radius: 16px;
+      box-shadow: 0 10px 48px rgba(0,0,0,.16);
+      width: 288px; overflow: hidden; font-size: 12px;
+    }
+    .pm-head {
+      background: linear-gradient(135deg, #1c1c1e 0%, #2c2c2e 100%);
+      padding: 14px 16px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .pm-badge {
+      width: 30px; height: 30px; border-radius: 8px;
+      background: var(--c-accent);
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-weight: 800; font-size: 15px; flex-shrink: 0;
+    }
+    .pm-head-t h3 { color: #fff; font-size: 13px; font-weight: 600; }
+    .pm-head-t p  { color: rgba(255,255,255,.45); font-size: 10px; margin-top: 2px; }
+    .pm-body { padding: 16px; }
+    .pm-slabel {
+      font-size: 10px; font-weight: 700; color: #6e6e73;
+      text-transform: uppercase; letter-spacing: .5px; margin-bottom: 8px;
+    }
+    .pm-card {
+      background: #f5f5f7; border-radius: 10px;
+      padding: 10px 12px; margin-bottom: 6px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .pm-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--c-accent); flex-shrink: 0; }
+    .pm-card-name { font-size: 12px; font-weight: 600; color: #1d1d1f; }
+    .pm-card-sub  { font-size: 10px; color: #6e6e73; margin-top: 2px; }
+    .pm-add {
+      border: 1.5px dashed #d2d2d7; border-radius: 10px;
+      padding: 8px 12px; text-align: center;
+      color: var(--c-accent); font-size: 11px; font-weight: 600; margin-bottom: 14px;
+    }
+    .pm-dates {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 12px;
+    }
+    .pm-date {
+      background: #f5f5f7; border-radius: 8px; padding: 8px 10px;
+    }
+    .pm-date-lbl { font-size: 9px; color: #6e6e73; font-weight: 700; text-transform: uppercase; }
+    .pm-date-val { font-size: 11px; color: #1d1d1f; font-weight: 500; margin-top: 2px; }
+    .pm-btn {
+      width: 100%; padding: 10px;
+      background: var(--c-accent); color: #fff;
+      border: none; border-radius: 10px;
+      font-size: 13px; font-weight: 600; text-align: center;
+    }
+    .pm-prog-bar {
+      height: 4px; background: #e5e5ea; border-radius: 2px;
+      margin-bottom: 10px; overflow: hidden;
+    }
+    .pm-prog-fill {
+      height: 100%; border-radius: 2px; background: var(--c-accent);
+    }
+    .pm-status {
+      font-size: 11px; color: #6e6e73; text-align: center; margin-bottom: 12px;
+    }
+    .pm-file {
+      display: flex; align-items: center; gap: 8px;
+      background: #f5f5f7; border-radius: 8px;
+      padding: 8px 10px; margin-bottom: 5px;
+    }
+    .pm-file-icon { font-size: 14px; flex-shrink: 0; }
+    .pm-file-name { font-size: 11px; font-weight: 500; color: #1d1d1f; }
+    .pm-file-sub  { font-size: 10px; color: #34c759; margin-top: 1px; }
+
+    /* ─── FOLDER MOCKUP ───────────────────────────────────── */
+    .fm {
+      background: #fff; border-radius: 14px;
+      box-shadow: 0 10px 48px rgba(0,0,0,.13);
+      width: 300px; overflow: hidden; font-size: 12px;
+    }
+    .fm-bar {
+      background: #e8e8e8; padding: 10px 14px;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .fm-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .fm-body { padding: 14px 12px; }
+    .fm-row {
+      display: flex; align-items: center; gap: 7px;
+      padding: 5px 7px; border-radius: 5px; color: #1d1d1f;
+    }
+    .fm-row:hover { background: #f5f5f7; }
+    .fm-row.i1 { padding-left: 24px; }
+    .fm-row.i2 { padding-left: 44px; }
+    .fm-row.i2 .fm-icon { font-size: 13px; }
+    .fm-icon { font-size: 16px; flex-shrink: 0; }
+    .fm-name { font-size: 12px; color: #1d1d1f; }
+    .fm-name.dim { color: #6e6e73; font-size: 11px; }
+
+    /* ─── INSTALL ─────────────────────────────────────────── */
+    .install { padding: 100px 0; background: var(--c-bg2); }
+    .install-header { text-align: center; margin-bottom: 60px; }
+    .install-steps {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+    }
+    .install-card {
+      background: var(--c-bg); border-radius: var(--radius);
+      padding: 32px 26px; box-shadow: 0 2px 14px rgba(0,0,0,.055);
+    }
+    .install-num {
+      width: 34px; height: 34px; border-radius: 50%;
+      background: var(--c-accent); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px; font-weight: 700; margin-bottom: 18px;
+    }
+    .install-card h3 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+    .install-card p  { font-size: 14px; color: var(--c-sub); line-height: 1.6; }
+    .code {
+      display: inline-block; background: var(--c-bg2);
+      border-radius: 6px; padding: 2px 7px;
+      font-family: 'SF Mono', Menlo, monospace; font-size: 12px; color: #1d1d1f;
+    }
+
+    /* ─── SUPPORT ─────────────────────────────────────────── */
+    .support { padding: 100px 0; }
+    .support-header { text-align: center; margin-bottom: 56px; }
+    .support-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .support-card {
+      background: var(--c-bg2); border-radius: var(--radius);
+      padding: 36px 32px;
+    }
+    .support-card h3 { font-size: 22px; font-weight: 700; margin-bottom: 10px; }
+    .support-card p  { font-size: 15px; color: var(--c-sub); line-height: 1.7; }
+    .tags { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag {
+      display: inline-block; padding: 4px 12px;
+      background: rgba(0,0,0,.06); border-radius: 100px;
+      font-size: 11px; font-weight: 600; color: var(--c-sub);
+    }
+
+    /* ─── FOOTER ──────────────────────────────────────────── */
+    footer {
+      text-align: center; padding: 44px 28px;
+      font-size: 12px; color: var(--c-sub);
+      border-top: 1px solid var(--c-border);
+    }
+
+    /* ─── FADE IN ─────────────────────────────────────────── */
+    .fi {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+    .fi.on { opacity: 1; transform: none; }
+
+    /* ─── RESPONSIVE ──────────────────────────────────────── */
+    @media (max-width: 700px) {
+      .step { grid-template-columns: 1fr; gap: 40px; }
+      .step.rev .step-vis { order: 0; }
+      .support-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ───────────────────────────────────────────────── -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-logo">쇼핑 영수증 자동저장</div>
+    <ul class="nav-links">
+      <li><a href="#features">특장점</a></li>
+      <li><a href="#howto">사용 방법</a></li>
+      <li><a href="#install">설치</a></li>
+      <li><a href="#support">지원 쇼핑몰</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ── HERO ──────────────────────────────────────────────── -->
+<section class="hero">
+  <p class="hero-label">Chrome 확장프로그램</p>
+  <h1 class="hero-title">영수증 저장,<br>이제 자동으로.</h1>
+  <p class="hero-sub">쿠팡·네이버쇼핑 거래명세서를<br>카드별로 자동 분류하여 한 번에 저장합니다.</p>
+  <div class="hero-chips">
+    <div class="chip"><div class="chip-dot" style="background:#e52d27"></div>쿠팡</div>
+    <div class="chip"><div class="chip-dot" style="background:#03c75a"></div>네이버쇼핑</div>
+  </div>
+</section>
+
+<!-- ── FEATURES ──────────────────────────────────────────── -->
+<section id="features" class="features">
+  <div class="container">
+    <div class="features-header fi">
+      <p class="sec-label">왜 이 확장프로그램인가</p>
+      <h2 class="sec-title">복잡한 수작업,<br>이제 그만.</h2>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-card fi">
+        <div class="feat-icon blue">🎯</div>
+        <h3>자동 카드 매칭</h3>
+        <p>등록한 카드로 결제한 주문만 선별합니다. BC카드·비씨카드 등 동의어도 자동으로 처리합니다.</p>
+      </div>
+      <div class="feat-card fi">
+        <div class="feat-icon green">⚡</div>
+        <h3>클릭 한 번</h3>
+        <p>영수증 창 열기·캡처·다운로드까지 모든 과정이 백그라운드에서 자동으로 진행됩니다.</p>
+      </div>
+      <div class="feat-card fi">
+        <div class="feat-icon orange">📁</div>
+        <h3>체계적 파일 정리</h3>
+        <p>쇼핑몰·카드별 폴더로 자동 분류하고 날짜·금액·상품명으로 파일명을 만듭니다.</p>
+      </div>
+      <div class="feat-card fi">
+        <div class="feat-icon purple">💳</div>
+        <h3>멀티카드 지원</h3>
+        <p>여러 장의 카드를 등록하고 동시에 처리할 수 있습니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── STEPS ──────────────────────────────────────────────── -->
+<section id="howto" class="steps">
+  <div class="container">
+    <div class="steps-header fi">
+      <p class="sec-label">사용 방법</p>
+      <h2 class="sec-title">4단계면 충분합니다.</h2>
+    </div>
+
+    <!-- STEP 1 ── 카드 등록 -->
+    <div class="step fi">
+      <div class="step-txt">
+        <p class="step-num">STEP 01</p>
+        <h3 class="step-title">카드를<br>등록합니다.</h3>
+        <p class="step-desc">확장프로그램 아이콘을 클릭해 팝업을 열고, 카드사·뒷 4자리·별칭을 입력합니다.</p>
+        <div class="tips">
+          <div class="tip">카드는 여러 장 등록할 수 있습니다.</div>
+          <div class="tip">별칭은 저장 폴더명에 사용됩니다. (예: 홍길동 카드)</div>
+          <div class="tip">BC카드·비씨카드처럼 같은 카드의 다른 표기는 자동 처리됩니다.</div>
+        </div>
+      </div>
+      <div class="step-vis">
+        <div class="vis-wrap">
+          <div class="pm">
+            <div class="pm-head">
+              <div class="pm-badge">W</div>
+              <div class="pm-head-t">
+                <h3>쇼핑 영수증 자동저장</h3>
+                <p>거래명세서 자동 캡처·저장</p>
+              </div>
+            </div>
+            <div class="pm-body">
+              <div class="pm-slabel">등록 카드</div>
+              <div class="pm-card">
+                <div class="pm-dot"></div>
+                <div>
+                  <div class="pm-card-name">홍길동 카드</div>
+                  <div class="pm-card-sub">BC카드 · 뒷번호 1234</div>
+                </div>
+              </div>
+              <div class="pm-add">+ 카드 추가</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 2 ── 기간 설정 -->
+    <div class="step rev fi">
+      <div class="step-txt">
+        <p class="step-num">STEP 02</p>
+        <h3 class="step-title">조회 기간을<br>설정합니다.</h3>
+        <p class="step-desc">영수증을 저장할 주문 날짜 범위를 입력합니다.</p>
+        <div class="tips">
+          <div class="tip">이번 달, 지난 달 등 원하는 기간을 자유롭게 설정합니다.</div>
+          <div class="tip">범위 안의 모든 주문이 자동으로 처리됩니다.</div>
+        </div>
+      </div>
+      <div class="step-vis">
+        <div class="vis-wrap">
+          <div class="pm">
+            <div class="pm-head">
+              <div class="pm-badge">W</div>
+              <div class="pm-head-t">
+                <h3>쇼핑 영수증 자동저장</h3>
+                <p>거래명세서 자동 캡처·저장</p>
+              </div>
+            </div>
+            <div class="pm-body">
+              <div class="pm-slabel">조회 기간</div>
+              <div class="pm-dates">
+                <div class="pm-date">
+                  <div class="pm-date-lbl">시작일</div>
+                  <div class="pm-date-val">2026-06-01</div>
+                </div>
+                <div class="pm-date">
+                  <div class="pm-date-lbl">종료일</div>
+                  <div class="pm-date-val">2026-06-30</div>
+                </div>
+              </div>
+              <div class="pm-btn">시작</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 3 ── 실행 중 -->
+    <div class="step fi">
+      <div class="step-txt">
+        <p class="step-num">STEP 03</p>
+        <h3 class="step-title">주문 목록 페이지에서<br>시작합니다.</h3>
+        <p class="step-desc">쿠팡 또는 네이버쇼핑 주문 목록 페이지에서 "시작" 버튼을 누르면 자동으로 처리가 시작됩니다.</p>
+        <div class="tips">
+          <div class="tip">쿠팡: mc.coupang.com 주문 목록 페이지</div>
+          <div class="tip">네이버: 네이버쇼핑 주문 내역 페이지</div>
+          <div class="tip">처리 중에도 다른 탭을 자유롭게 사용할 수 있습니다.</div>
+          <div class="tip">언제든 중단 버튼으로 멈출 수 있습니다.</div>
+        </div>
+      </div>
+      <div class="step-vis">
+        <div class="vis-wrap">
+          <div class="pm">
+            <div class="pm-head">
+              <div class="pm-badge">W</div>
+              <div class="pm-head-t">
+                <h3>쇼핑 영수증 자동저장</h3>
+                <p>처리 중…</p>
+              </div>
+            </div>
+            <div class="pm-body">
+              <div class="pm-prog-bar">
+                <div class="pm-prog-fill" style="width:62%"></div>
+              </div>
+              <div class="pm-status">7 / 11 처리 중</div>
+              <div class="pm-slabel">최근 저장</div>
+              <div class="pm-file">
+                <div class="pm-file-icon">🖼</div>
+                <div>
+                  <div class="pm-file-name">260610_31,500원_키보드</div>
+                  <div class="pm-file-sub">✓ 저장 완료</div>
+                </div>
+              </div>
+              <div class="pm-file">
+                <div class="pm-file-icon">🖼</div>
+                <div>
+                  <div class="pm-file-name">260608_12,900원_마우스패드</div>
+                  <div class="pm-file-sub">✓ 저장 완료</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 4 ── 결과 확인 -->
+    <div class="step rev fi">
+      <div class="step-txt">
+        <p class="step-num">STEP 04</p>
+        <h3 class="step-title">정리된 파일을<br>확인합니다.</h3>
+        <p class="step-desc">다운로드 폴더에 쇼핑몰·카드별로 자동 분류된 영수증 이미지 파일이 저장됩니다.</p>
+        <div class="tips">
+          <div class="tip">폴더명: 쇼핑몰_카드별칭_뒷번호</div>
+          <div class="tip">파일명: 날짜_금액_상품명.png</div>
+          <div class="tip">카드가 다르면 자동으로 다른 폴더에 분류됩니다.</div>
+        </div>
+      </div>
+      <div class="step-vis">
+        <div class="vis-wrap">
+          <div class="fm">
+            <div class="fm-bar">
+              <div class="fm-dot" style="background:#ff5f57"></div>
+              <div class="fm-dot" style="background:#ffbd2e"></div>
+              <div class="fm-dot" style="background:#28c840"></div>
+            </div>
+            <div class="fm-body">
+              <div class="fm-row">
+                <span class="fm-icon">📁</span>
+                <span class="fm-name" style="font-weight:600">쇼핑_영수증</span>
+              </div>
+              <div class="fm-row i1">
+                <span class="fm-icon">📂</span>
+                <span class="fm-name">쿠팡_홍길동카드_1234</span>
+              </div>
+              <div class="fm-row i2">
+                <span class="fm-icon">🖼</span>
+                <span class="fm-name dim">260610_31,500원_키보드.png</span>
+              </div>
+              <div class="fm-row i2">
+                <span class="fm-icon">🖼</span>
+                <span class="fm-name dim">260608_12,900원_마우스패드.png</span>
+              </div>
+              <div class="fm-row i1">
+                <span class="fm-icon">📂</span>
+                <span class="fm-name">네이버_홍길동카드_1234</span>
+              </div>
+              <div class="fm-row i2">
+                <span class="fm-icon">🖼</span>
+                <span class="fm-name dim">260605_54,000원_모니터암.png</span>
+              </div>
+              <div class="fm-row i2">
+                <span class="fm-icon">🖼</span>
+                <span class="fm-name dim">260601_8,900원_USB허브.png</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── INSTALL ────────────────────────────────────────────── -->
+<section id="install" class="install">
+  <div class="container">
+    <div class="install-header fi">
+      <p class="sec-label">설치 방법</p>
+      <h2 class="sec-title">3분이면 됩니다.</h2>
+    </div>
+    <div class="install-steps">
+      <div class="install-card fi">
+        <div class="install-num">1</div>
+        <h3>파일 준비</h3>
+        <p>확장프로그램 폴더를 원하는 위치에 저장합니다.</p>
+      </div>
+      <div class="install-card fi">
+        <div class="install-num">2</div>
+        <h3>Chrome 설정 열기</h3>
+        <p>주소창에 <span class="code">chrome://extensions</span> 를 입력하고 "개발자 모드"를 켭니다.</p>
+      </div>
+      <div class="install-card fi">
+        <div class="install-num">3</div>
+        <h3>폴더 불러오기</h3>
+        <p>"압축해제된 확장 프로그램을 로드합니다"를 클릭하고 폴더를 선택합니다.</p>
+      </div>
+      <div class="install-card fi">
+        <div class="install-num">4</div>
+        <h3>아이콘 고정</h3>
+        <p>Chrome 도구 모음의 퍼즐 아이콘을 클릭하고 고정 아이콘(📌)을 눌러 고정합니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SUPPORT ────────────────────────────────────────────── -->
+<section id="support" class="support">
+  <div class="container">
+    <div class="support-header fi">
+      <p class="sec-label">지원 쇼핑몰</p>
+      <h2 class="sec-title">두 곳을 지원합니다.</h2>
+    </div>
+    <div class="support-grid fi">
+      <div class="support-card">
+        <h3>🛒 쿠팡</h3>
+        <p>기업 전용 쿠팡(mc.coupang.com)의 주문 목록에서 작동합니다. 주문 상세 페이지에서 카드사를 확인하고 거래명세서를 자동 캡처합니다.</p>
+        <div class="tags">
+          <span class="tag">mc.coupang.com</span>
+          <span class="tag">거래명세서</span>
+          <span class="tag">카드사 검증</span>
+        </div>
+      </div>
+      <div class="support-card">
+        <h3>🛍 네이버쇼핑</h3>
+        <p>네이버쇼핑 주문 내역에서 카드영수증을 자동으로 열고 캡처합니다. 카드사와 뒷 4자리를 모두 검증한 뒤 저장합니다.</p>
+        <div class="tags">
+          <span class="tag">shopping.naver.com</span>
+          <span class="tag">카드영수증</span>
+          <span class="tag">뒷번호 검증</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────────────────────── -->
+<footer>
+  <p>쇼핑 영수증 자동저장 · Chrome Extension · v1.2.0</p>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(
+    entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); }),
+    { threshold: 0.12 }
+  );
+  document.querySelectorAll('.fi').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
