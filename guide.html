@@ -8,27 +8,23 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --c-bg:       #ffffff;
-      --c-bg2:      #f5f5f7;
-      --c-bg3:      #fbfbfd;
-      --c-text:     #1d1d1f;
-      --c-sub:      #6e6e73;
-      --c-accent:   #0071e3;
-      --c-border:   rgba(0,0,0,.08);
-      --radius:     20px;
+      --c-bg:     #ffffff;
+      --c-bg2:    #f5f5f7;
+      --c-text:   #1d1d1f;
+      --c-sub:    #6e6e73;
+      --c-accent: #0071e3;
+      --c-border: rgba(0,0,0,.08);
+      --radius:   20px;
     }
 
     html { scroll-behavior: smooth; }
-
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
-      background: var(--c-bg);
-      color: var(--c-text);
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
+      background: var(--c-bg); color: var(--c-text);
+      -webkit-font-smoothing: antialiased; overflow-x: hidden;
     }
 
-    /* ─── NAV ─────────────────────────────────────────────── */
+    /* ── NAV ─────────────────────────────────────────────── */
     .nav {
       position: sticky; top: 0; z-index: 100;
       background: rgba(255,255,255,.82);
@@ -37,78 +33,39 @@
       border-bottom: 1px solid var(--c-border);
     }
     .nav-inner {
-      max-width: 1000px; margin: 0 auto;
+      max-width: 1020px; margin: 0 auto;
       display: flex; align-items: center; justify-content: space-between;
       padding: 0 28px; height: 52px;
     }
     .nav-logo { font-size: 16px; font-weight: 600; letter-spacing: -.3px; }
-    .nav-links { display: flex; gap: 28px; list-style: none; }
-    .nav-links a {
-      font-size: 13px; color: var(--c-sub);
-      text-decoration: none; transition: color .15s;
-    }
+    .nav-links { display: flex; gap: 26px; list-style: none; }
+    .nav-links a { font-size: 13px; color: var(--c-sub); text-decoration: none; transition: color .15s; }
     .nav-links a:hover { color: var(--c-text); }
 
-    /* ─── HERO ────────────────────────────────────────────── */
+    /* ── HERO ────────────────────────────────────────────── */
     .hero {
       background: linear-gradient(180deg, #fbfbfd 0%, #fff 100%);
       text-align: center; padding: 110px 28px 90px;
     }
-    .hero-label {
-      font-size: 13px; font-weight: 600; color: var(--c-accent);
-      letter-spacing: .6px; text-transform: uppercase; margin-bottom: 22px;
-    }
-    .hero-title {
-      font-size: clamp(44px, 7.5vw, 86px);
-      font-weight: 700; letter-spacing: -2.5px; line-height: 1.04;
-      margin-bottom: 26px;
-    }
-    .hero-sub {
-      font-size: clamp(17px, 2.5vw, 22px);
-      color: var(--c-sub); line-height: 1.65;
-      max-width: 520px; margin: 0 auto 52px;
-    }
+    .hero-label { font-size: 13px; font-weight: 600; color: var(--c-accent); letter-spacing: .6px; text-transform: uppercase; margin-bottom: 22px; }
+    .hero-title { font-size: clamp(44px, 7.5vw, 86px); font-weight: 700; letter-spacing: -2.5px; line-height: 1.04; margin-bottom: 26px; }
+    .hero-sub { font-size: clamp(17px, 2.5vw, 22px); color: var(--c-sub); line-height: 1.65; max-width: 520px; margin: 0 auto 52px; }
     .hero-chips { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
-    .chip {
-      display: inline-flex; align-items: center; gap: 7px;
-      background: var(--c-bg2); border-radius: 100px;
-      padding: 7px 18px; font-size: 13px; font-weight: 500;
-    }
+    .chip { display: inline-flex; align-items: center; gap: 7px; background: var(--c-bg2); border-radius: 100px; padding: 7px 18px; font-size: 13px; font-weight: 500; }
     .chip-dot { width: 7px; height: 7px; border-radius: 50%; }
 
-    /* ─── COMMON ──────────────────────────────────────────── */
-    .container { max-width: 1000px; margin: 0 auto; padding: 0 28px; }
-    .sec-label {
-      font-size: 13px; font-weight: 600; color: var(--c-accent);
-      letter-spacing: .6px; text-transform: uppercase; margin-bottom: 10px;
-    }
-    .sec-title {
-      font-size: clamp(30px, 4.5vw, 52px);
-      font-weight: 700; letter-spacing: -1.5px; line-height: 1.1;
-      margin-bottom: 14px;
-    }
-    .sec-sub {
-      font-size: 17px; color: var(--c-sub); line-height: 1.65;
-    }
+    /* ── COMMON ──────────────────────────────────────────── */
+    .container { max-width: 1020px; margin: 0 auto; padding: 0 28px; }
+    .sec-label { font-size: 13px; font-weight: 600; color: var(--c-accent); letter-spacing: .6px; text-transform: uppercase; margin-bottom: 10px; }
+    .sec-title { font-size: clamp(30px, 4.5vw, 52px); font-weight: 700; letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 14px; }
+    .sec-sub { font-size: 17px; color: var(--c-sub); line-height: 1.65; }
 
-    /* ─── FEATURES ────────────────────────────────────────── */
+    /* ── FEATURES ────────────────────────────────────────── */
     .features { padding: 100px 0; background: var(--c-bg2); }
     .features-header { text-align: center; margin-bottom: 56px; }
-    .feat-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 14px;
-    }
-    .feat-card {
-      background: var(--c-bg); border-radius: var(--radius);
-      padding: 36px 28px;
-      box-shadow: 0 2px 16px rgba(0,0,0,.055);
-    }
-    .feat-icon {
-      width: 50px; height: 50px; border-radius: 13px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 26px; margin-bottom: 20px;
-    }
+    .feat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; }
+    .feat-card { background: var(--c-bg); border-radius: var(--radius); padding: 36px 28px; box-shadow: 0 2px 16px rgba(0,0,0,.055); }
+    .feat-icon { width: 50px; height: 50px; border-radius: 13px; display: flex; align-items: center; justify-content: center; font-size: 26px; margin-bottom: 20px; }
     .feat-icon.blue   { background: #e5f0fd; }
     .feat-icon.green  { background: #e4f8ee; }
     .feat-icon.orange { background: #fff2e5; }
@@ -116,205 +73,227 @@
     .feat-card h3 { font-size: 17px; font-weight: 600; margin-bottom: 8px; }
     .feat-card p  { font-size: 14px; color: var(--c-sub); line-height: 1.65; }
 
-    /* ─── STEPS ───────────────────────────────────────────── */
+    /* ── HOW-TO STEPS ────────────────────────────────────── */
     .steps { padding: 100px 0; }
     .steps-header { text-align: center; margin-bottom: 86px; }
-
-    .step {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 72px; align-items: center; margin-bottom: 110px;
-    }
+    .step { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; margin-bottom: 110px; }
     .step:last-child { margin-bottom: 0; }
     .step.rev .step-vis { order: -1; }
-
-    .step-num {
-      font-size: 12px; font-weight: 700; color: var(--c-accent);
-      letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px;
-    }
-    .step-title {
-      font-size: clamp(26px, 3.2vw, 40px);
-      font-weight: 700; letter-spacing: -1.2px; line-height: 1.2;
-      margin-bottom: 18px;
-    }
-    .step-desc {
-      font-size: 16px; color: var(--c-sub); line-height: 1.75;
-      margin-bottom: 26px;
-    }
+    .step-num { font-size: 12px; font-weight: 700; color: var(--c-accent); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px; }
+    .step-title { font-size: clamp(26px, 3.2vw, 40px); font-weight: 700; letter-spacing: -1.2px; line-height: 1.2; margin-bottom: 18px; }
+    .step-desc { font-size: 16px; color: var(--c-sub); line-height: 1.75; margin-bottom: 26px; }
     .tips { display: flex; flex-direction: column; gap: 10px; }
-    .tip {
-      display: flex; align-items: flex-start; gap: 9px;
-      font-size: 14px; color: var(--c-sub); line-height: 1.5;
-    }
-    .tip::before {
-      content: '✓'; color: var(--c-accent); font-weight: 700;
-      flex-shrink: 0; margin-top: 1px;
-    }
+    .tip { display: flex; align-items: flex-start; gap: 9px; font-size: 14px; color: var(--c-sub); line-height: 1.5; }
+    .tip::before { content: '✓'; color: var(--c-accent); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .vis-wrap { background: var(--c-bg2); border-radius: 26px; padding: 40px; display: flex; align-items: center; justify-content: center; min-height: 320px; }
 
-    /* ─── MOCKUP WRAPPERS ─────────────────────────────────── */
-    .vis-wrap {
-      background: var(--c-bg2); border-radius: 26px;
-      padding: 40px; display: flex;
-      align-items: center; justify-content: center;
-      min-height: 320px;
-    }
-
-    /* ─── POPUP MOCKUP ────────────────────────────────────── */
-    .pm {
-      background: #fff; border-radius: 16px;
-      box-shadow: 0 10px 48px rgba(0,0,0,.16);
-      width: 288px; overflow: hidden; font-size: 12px;
-    }
-    .pm-head {
-      background: linear-gradient(135deg, #1c1c1e 0%, #2c2c2e 100%);
-      padding: 14px 16px;
-      display: flex; align-items: center; gap: 10px;
-    }
-    .pm-badge {
-      width: 30px; height: 30px; border-radius: 8px;
-      background: var(--c-accent);
-      display: flex; align-items: center; justify-content: center;
-      color: #fff; font-weight: 800; font-size: 15px; flex-shrink: 0;
-    }
+    /* ── POPUP MOCKUP ────────────────────────────────────── */
+    .pm { background: #fff; border-radius: 16px; box-shadow: 0 10px 48px rgba(0,0,0,.16); width: 288px; overflow: hidden; font-size: 12px; }
+    .pm-head { background: linear-gradient(135deg, #1c1c1e, #2c2c2e); padding: 14px 16px; display: flex; align-items: center; gap: 10px; }
+    .pm-badge { width: 30px; height: 30px; border-radius: 8px; background: var(--c-accent); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 800; font-size: 15px; flex-shrink: 0; }
     .pm-head-t h3 { color: #fff; font-size: 13px; font-weight: 600; }
     .pm-head-t p  { color: rgba(255,255,255,.45); font-size: 10px; margin-top: 2px; }
     .pm-body { padding: 16px; }
-    .pm-slabel {
-      font-size: 10px; font-weight: 700; color: #6e6e73;
-      text-transform: uppercase; letter-spacing: .5px; margin-bottom: 8px;
-    }
-    .pm-card {
-      background: #f5f5f7; border-radius: 10px;
-      padding: 10px 12px; margin-bottom: 6px;
-      display: flex; align-items: center; gap: 8px;
-    }
-    .pm-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--c-accent); flex-shrink: 0; }
+    .pm-slabel { font-size: 10px; font-weight: 700; color: #6e6e73; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 8px; }
+    .pm-card { background: #f5f5f7; border-radius: 10px; padding: 10px 12px; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+    .pm-dot  { width: 8px; height: 8px; border-radius: 50%; background: var(--c-accent); flex-shrink: 0; }
     .pm-card-name { font-size: 12px; font-weight: 600; color: #1d1d1f; }
     .pm-card-sub  { font-size: 10px; color: #6e6e73; margin-top: 2px; }
-    .pm-add {
-      border: 1.5px dashed #d2d2d7; border-radius: 10px;
-      padding: 8px 12px; text-align: center;
-      color: var(--c-accent); font-size: 11px; font-weight: 600; margin-bottom: 14px;
-    }
-    .pm-dates {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 12px;
-    }
-    .pm-date {
-      background: #f5f5f7; border-radius: 8px; padding: 8px 10px;
-    }
+    .pm-add { border: 1.5px dashed #d2d2d7; border-radius: 10px; padding: 8px 12px; text-align: center; color: var(--c-accent); font-size: 11px; font-weight: 600; margin-bottom: 14px; }
+    .pm-dates { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 12px; }
+    .pm-date { background: #f5f5f7; border-radius: 8px; padding: 8px 10px; }
     .pm-date-lbl { font-size: 9px; color: #6e6e73; font-weight: 700; text-transform: uppercase; }
     .pm-date-val { font-size: 11px; color: #1d1d1f; font-weight: 500; margin-top: 2px; }
-    .pm-btn {
-      width: 100%; padding: 10px;
-      background: var(--c-accent); color: #fff;
-      border: none; border-radius: 10px;
-      font-size: 13px; font-weight: 600; text-align: center;
-    }
-    .pm-prog-bar {
-      height: 4px; background: #e5e5ea; border-radius: 2px;
-      margin-bottom: 10px; overflow: hidden;
-    }
-    .pm-prog-fill {
-      height: 100%; border-radius: 2px; background: var(--c-accent);
-    }
-    .pm-status {
-      font-size: 11px; color: #6e6e73; text-align: center; margin-bottom: 12px;
-    }
-    .pm-file {
-      display: flex; align-items: center; gap: 8px;
-      background: #f5f5f7; border-radius: 8px;
-      padding: 8px 10px; margin-bottom: 5px;
-    }
+    .pm-btn { width: 100%; padding: 10px; background: var(--c-accent); color: #fff; border: none; border-radius: 10px; font-size: 13px; font-weight: 600; text-align: center; }
+    .pm-prog-bar { height: 4px; background: #e5e5ea; border-radius: 2px; margin-bottom: 10px; overflow: hidden; }
+    .pm-prog-fill { height: 100%; border-radius: 2px; background: var(--c-accent); }
+    .pm-status { font-size: 11px; color: #6e6e73; text-align: center; margin-bottom: 12px; }
+    .pm-file { display: flex; align-items: center; gap: 8px; background: #f5f5f7; border-radius: 8px; padding: 8px 10px; margin-bottom: 5px; }
     .pm-file-icon { font-size: 14px; flex-shrink: 0; }
     .pm-file-name { font-size: 11px; font-weight: 500; color: #1d1d1f; }
     .pm-file-sub  { font-size: 10px; color: #34c759; margin-top: 1px; }
 
-    /* ─── FOLDER MOCKUP ───────────────────────────────────── */
-    .fm {
-      background: #fff; border-radius: 14px;
-      box-shadow: 0 10px 48px rgba(0,0,0,.13);
-      width: 300px; overflow: hidden; font-size: 12px;
-    }
-    .fm-bar {
-      background: #e8e8e8; padding: 10px 14px;
-      display: flex; align-items: center; gap: 6px;
-    }
+    /* ── FOLDER MOCKUP ───────────────────────────────────── */
+    .fm { background: #fff; border-radius: 14px; box-shadow: 0 10px 48px rgba(0,0,0,.13); width: 300px; overflow: hidden; }
+    .fm-bar { background: #e8e8e8; padding: 10px 14px; display: flex; align-items: center; gap: 6px; }
     .fm-dot { width: 10px; height: 10px; border-radius: 50%; }
     .fm-body { padding: 14px 12px; }
-    .fm-row {
-      display: flex; align-items: center; gap: 7px;
-      padding: 5px 7px; border-radius: 5px; color: #1d1d1f;
-    }
-    .fm-row:hover { background: #f5f5f7; }
+    .fm-row { display: flex; align-items: center; gap: 7px; padding: 5px 7px; border-radius: 5px; }
     .fm-row.i1 { padding-left: 24px; }
     .fm-row.i2 { padding-left: 44px; }
-    .fm-row.i2 .fm-icon { font-size: 13px; }
     .fm-icon { font-size: 16px; flex-shrink: 0; }
+    .fm-row.i2 .fm-icon { font-size: 13px; }
     .fm-name { font-size: 12px; color: #1d1d1f; }
     .fm-name.dim { color: #6e6e73; font-size: 11px; }
 
-    /* ─── INSTALL ─────────────────────────────────────────── */
-    .install { padding: 100px 0; background: var(--c-bg2); }
-    .install-header { text-align: center; margin-bottom: 60px; }
-    .install-steps {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 14px;
+    /* ── WHERE TO USE ────────────────────────────────────── */
+    .where { padding: 100px 0; background: var(--c-bg2); }
+    .where-header { text-align: center; margin-bottom: 56px; }
+
+    .callout {
+      background: #fff8e6; border: 1.5px solid #f5a623;
+      border-radius: 14px; padding: 18px 22px;
+      display: flex; align-items: flex-start; gap: 14px;
+      margin-bottom: 52px;
     }
-    .install-card {
-      background: var(--c-bg); border-radius: var(--radius);
-      padding: 32px 26px; box-shadow: 0 2px 14px rgba(0,0,0,.055);
+    .callout-icon { font-size: 22px; flex-shrink: 0; line-height: 1.4; }
+    .callout p { font-size: 14px; color: #5a3e00; line-height: 1.7; }
+    .callout strong { font-weight: 700; }
+
+    .shop-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+    .shop-block { display: flex; flex-direction: column; gap: 12px; }
+    .shop-block-title { font-size: 15px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+    .shop-url {
+      font-family: 'SF Mono', Menlo, monospace; font-size: 11px;
+      background: rgba(0,0,0,.06); border-radius: 6px; padding: 4px 10px;
+      color: var(--c-sub); display: inline-block;
     }
-    .install-num {
-      width: 34px; height: 34px; border-radius: 50%;
+
+    /* browser window wrapper */
+    .bw { background: #fff; border-radius: 12px; box-shadow: 0 6px 28px rgba(0,0,0,.12); overflow: hidden; }
+    .bw-bar { background: #e5e5e5; padding: 8px 12px; display: flex; align-items: center; gap: 8px; }
+    .bw-dots { display: flex; gap: 5px; }
+    .bw-dot { width: 9px; height: 9px; border-radius: 50%; }
+    .bw-addr { flex: 1; background: #fff; border-radius: 5px; padding: 3px 10px; font-size: 10px; color: var(--c-sub); font-family: 'SF Mono', Menlo, monospace; text-align: center; }
+
+    /* Coupang order list */
+    .cp-head { background: #1a1a2e; padding: 9px 12px; display: flex; align-items: center; gap: 14px; }
+    .cp-logo { color: #e52d27; font-weight: 900; font-size: 13px; letter-spacing: -1px; }
+    .cp-nav { display: flex; gap: 12px; }
+    .cp-nav span { font-size: 10px; color: rgba(255,255,255,.5); cursor: pointer; }
+    .cp-nav span.on { color: #fff; font-weight: 700; border-bottom: 1.5px solid #fff; padding-bottom: 2px; }
+    .cp-body { padding: 10px 12px; }
+    .cp-order { border: 1px solid #eee; border-radius: 8px; margin-bottom: 7px; overflow: hidden; }
+    .cp-order-hd { background: #f8f8f8; padding: 5px 10px; display: flex; justify-content: space-between; border-bottom: 1px solid #eee; }
+    .cp-order-hd span { font-size: 9px; color: #6e6e73; }
+    .cp-order-bd { padding: 8px 10px; display: flex; gap: 8px; align-items: center; }
+    .cp-thumb { width: 42px; height: 42px; border-radius: 6px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+    .cp-info .cp-name  { font-size: 10px; color: #1d1d1f; line-height: 1.4; margin-bottom: 3px; }
+    .cp-info .cp-price { font-size: 11px; font-weight: 700; color: #1d1d1f; }
+    .cp-info .cp-stat  { font-size: 9px; color: #0071e3; font-weight: 600; margin-top: 2px; }
+
+    /* Naver order list */
+    .nv-head { background: #03c75a; padding: 9px 12px; display: flex; align-items: center; gap: 10px; }
+    .nv-logo { color: #fff; font-weight: 900; font-size: 12px; letter-spacing: -.5px; }
+    .nv-sub-nav { background: #fff; border-bottom: 1px solid #eee; padding: 6px 12px; display: flex; gap: 12px; }
+    .nv-sub-nav span { font-size: 10px; color: #6e6e73; cursor: pointer; }
+    .nv-sub-nav span.on { color: #1d1d1f; font-weight: 700; border-bottom: 2px solid #1d1d1f; padding-bottom: 3px; }
+    .nv-body { padding: 10px 12px; }
+    .nv-order { border: 1px solid #eee; border-radius: 8px; margin-bottom: 7px; padding: 8px 10px; }
+    .nv-order-top { display: flex; justify-content: space-between; margin-bottom: 7px; }
+    .nv-order-top .dt { font-size: 9px; color: #6e6e73; }
+    .nv-order-top .st { font-size: 9px; color: #03c75a; font-weight: 700; }
+    .nv-order-bd { display: flex; gap: 8px; align-items: center; }
+    .nv-thumb { width: 38px; height: 38px; border-radius: 6px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+    .nv-info .nv-name  { font-size: 10px; color: #1d1d1f; margin-bottom: 3px; line-height: 1.4; }
+    .nv-info .nv-price { font-size: 11px; font-weight: 700; color: #1d1d1f; }
+
+    /* ── INSTALL ─────────────────────────────────────────── */
+    .install { padding: 100px 0; }
+    .install-header { text-align: center; margin-bottom: 70px; }
+
+    .inst-list { display: flex; flex-direction: column; gap: 0; }
+    .inst-step {
+      display: grid; grid-template-columns: 56px 1fr 380px;
+      gap: 36px; align-items: center;
+      padding: 44px 0; border-bottom: 1px solid var(--c-border);
+    }
+    .inst-step:last-child { border-bottom: none; }
+
+    .inst-num {
+      width: 44px; height: 44px; border-radius: 50%;
       background: var(--c-accent); color: #fff;
+      font-size: 18px; font-weight: 700;
       display: flex; align-items: center; justify-content: center;
-      font-size: 15px; font-weight: 700; margin-bottom: 18px;
+      flex-shrink: 0;
     }
-    .install-card h3 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
-    .install-card p  { font-size: 14px; color: var(--c-sub); line-height: 1.6; }
-    .code {
-      display: inline-block; background: var(--c-bg2);
-      border-radius: 6px; padding: 2px 7px;
-      font-family: 'SF Mono', Menlo, monospace; font-size: 12px; color: #1d1d1f;
+    .inst-txt h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; letter-spacing: -.5px; }
+    .inst-txt p  { font-size: 14px; color: var(--c-sub); line-height: 1.75; }
+    .inst-txt .warn {
+      display: inline-flex; align-items: center; gap: 6px;
+      margin-top: 12px; font-size: 12px; color: #b45000;
+      background: #fff3e6; border-radius: 8px; padding: 6px 12px;
     }
+    .inst-vis { min-width: 0; }
 
-    /* ─── SUPPORT ─────────────────────────────────────────── */
-    .support { padding: 100px 0; }
-    .support-header { text-align: center; margin-bottom: 56px; }
-    .support-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
-    }
-    .support-card {
-      background: var(--c-bg2); border-radius: var(--radius);
-      padding: 36px 32px;
-    }
-    .support-card h3 { font-size: 22px; font-weight: 700; margin-bottom: 10px; }
-    .support-card p  { font-size: 15px; color: var(--c-sub); line-height: 1.7; }
-    .tags { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 6px; }
-    .tag {
-      display: inline-block; padding: 4px 12px;
-      background: rgba(0,0,0,.06); border-radius: 100px;
-      font-size: 11px; font-weight: 600; color: var(--c-sub);
-    }
+    /* address bar visual */
+    .v-browser { background: #fff; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,.12); overflow: hidden; }
+    .v-bbar { background: #e5e5e5; padding: 7px 10px; display: flex; align-items: center; gap: 6px; }
+    .v-bdots { display: flex; gap: 4px; }
+    .v-bdot { width: 9px; height: 9px; border-radius: 50%; }
+    .v-baddr { flex: 1; background: #fff; border-radius: 20px; padding: 4px 12px; font-size: 11px; font-family: 'SF Mono', Menlo, monospace; color: #1d1d1f; text-align: center; }
+    .v-baddr .hl { color: var(--c-accent); font-weight: 600; }
+    .v-bcontent { padding: 14px; font-size: 12px; color: #6e6e73; text-align: center; }
 
-    /* ─── FOOTER ──────────────────────────────────────────── */
-    footer {
-      text-align: center; padding: 44px 28px;
-      font-size: 12px; color: var(--c-sub);
-      border-top: 1px solid var(--c-border);
-    }
+    /* extensions page visual */
+    .v-ext { background: #fff; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,.12); overflow: hidden; font-size: 11px; }
+    .v-ext-bar { background: #e5e5e5; padding: 7px 10px; display: flex; align-items: center; gap: 6px; }
+    .v-ext-title { background: #f5f5f5; border-bottom: 1px solid #e0e0e0; padding: 9px 14px; display: flex; justify-content: space-between; align-items: center; }
+    .v-ext-title span { font-size: 14px; font-weight: 600; }
+    .v-devmode { display: flex; align-items: center; gap: 7px; font-size: 11px; color: #6e6e73; }
+    .v-toggle { width: 36px; height: 20px; border-radius: 10px; background: #d2d2d7; position: relative; }
+    .v-toggle.on { background: #34c759; }
+    .v-toggle::after { content: ''; position: absolute; width: 16px; height: 16px; background: #fff; border-radius: 50%; top: 2px; left: 2px; box-shadow: 0 1px 3px rgba(0,0,0,.3); transition: left .2s; }
+    .v-toggle.on::after { left: 18px; }
+    .v-ext-actions { padding: 8px 14px; border-bottom: 1px solid #e0e0e0; display: flex; gap: 8px; }
+    .v-ext-btn { font-size: 11px; padding: 5px 11px; border: 1.5px solid #d2d2d7; border-radius: 6px; color: #1d1d1f; background: #fff; white-space: nowrap; }
+    .v-ext-btn.hl { border-color: var(--c-accent); color: var(--c-accent); background: #e8f0fe; font-weight: 600; }
+    .v-ext-card { margin: 10px 14px; border: 1px solid #e0e0e0; border-radius: 8px; padding: 10px; }
+    .v-ext-card-top { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+    .v-ext-card-icon { width: 26px; height: 26px; border-radius: 7px; background: var(--c-accent); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; }
+    .v-ext-card-name { font-size: 12px; font-weight: 600; flex: 1; }
+    .v-ext-card-toggle { margin-left: auto; }
+    .v-ext-card-id { font-size: 9px; color: #6e6e73; }
 
-    /* ─── FADE IN ─────────────────────────────────────────── */
-    .fi {
-      opacity: 0; transform: translateY(28px);
-      transition: opacity .65s ease, transform .65s ease;
-    }
+    /* file picker visual */
+    .v-picker { background: #fff; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,.12); overflow: hidden; font-size: 11px; }
+    .v-picker-title { background: #e5e5e5; padding: 9px 14px; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; }
+    .v-picker-body { padding: 12px 14px; }
+    .v-picker-row { display: flex; align-items: center; gap: 8px; padding: 7px 8px; border-radius: 6px; }
+    .v-picker-row.sel { background: #e8f0fe; }
+    .v-picker-icon { font-size: 18px; flex-shrink: 0; }
+    .v-picker-name { font-size: 12px; color: #1d1d1f; }
+    .v-picker-name.hl { color: var(--c-accent); font-weight: 600; }
+    .v-picker-footer { border-top: 1px solid #e0e0e0; padding: 8px 14px; display: flex; justify-content: flex-end; gap: 6px; }
+    .v-picker-foot-btn { font-size: 11px; padding: 5px 14px; border-radius: 6px; border: 1px solid #d2d2d7; background: #fff; }
+    .v-picker-foot-btn.primary { background: var(--c-accent); color: #fff; border-color: transparent; font-weight: 600; }
+
+    /* toolbar visual */
+    .v-toolbar { background: #fff; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,.12); overflow: hidden; font-size: 11px; }
+    .v-tb-bar { background: #e5e5e5; padding: 7px 10px; display: flex; align-items: center; gap: 6px; }
+    .v-tb-addr { flex: 1; background: #fff; border-radius: 20px; padding: 4px 14px; font-size: 11px; color: #6e6e73; }
+    .v-tb-icons { display: flex; gap: 4px; margin-left: 6px; }
+    .v-tb-icon { width: 28px; height: 28px; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+    .v-tb-icon.puzzle { background: #f0f0f0; }
+    .v-tb-icon.w-icon { background: var(--c-accent); color: #fff; font-weight: 800; font-size: 14px; box-shadow: 0 2px 6px rgba(0,113,227,.4); }
+    .v-dropdown { margin: 0 10px 8px; background: #fff; border: 1px solid #e0e0e0; border-radius: 10px; box-shadow: 0 4px 16px rgba(0,0,0,.1); padding: 6px; }
+    .v-dd-item { display: flex; align-items: center; gap: 8px; padding: 7px 8px; border-radius: 7px; }
+    .v-dd-item.hl { background: #f5f5f7; }
+    .v-dd-icon { width: 24px; height: 24px; border-radius: 6px; background: var(--c-accent); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; }
+    .v-dd-name { font-size: 12px; flex: 1; }
+    .v-dd-pin { font-size: 15px; opacity: .35; }
+    .v-dd-pin.on { opacity: 1; color: var(--c-accent); }
+
+    /* install "code" style */
+    .code { display: inline-block; background: var(--c-bg2); border-radius: 6px; padding: 2px 8px; font-family: 'SF Mono', Menlo, monospace; font-size: 12px; color: #1d1d1f; }
+
+    /* ── FOOTER ──────────────────────────────────────────── */
+    footer { text-align: center; padding: 44px 28px; font-size: 12px; color: var(--c-sub); border-top: 1px solid var(--c-border); }
+
+    /* ── FADE IN ─────────────────────────────────────────── */
+    .fi { opacity: 0; transform: translateY(28px); transition: opacity .65s ease, transform .65s ease; }
     .fi.on { opacity: 1; transform: none; }
 
-    /* ─── RESPONSIVE ──────────────────────────────────────── */
+    /* ── RESPONSIVE ──────────────────────────────────────── */
+    @media (max-width: 860px) {
+      .inst-step { grid-template-columns: 44px 1fr; }
+      .inst-vis { display: none; }
+    }
     @media (max-width: 700px) {
       .step { grid-template-columns: 1fr; gap: 40px; }
       .step.rev .step-vis { order: 0; }
-      .support-grid { grid-template-columns: 1fr; }
+      .shop-grid { grid-template-columns: 1fr; }
       .nav-links { display: none; }
     }
   </style>
@@ -328,8 +307,8 @@
     <ul class="nav-links">
       <li><a href="#features">특장점</a></li>
       <li><a href="#howto">사용 방법</a></li>
-      <li><a href="#install">설치</a></li>
-      <li><a href="#support">지원 쇼핑몰</a></li>
+      <li><a href="#where">주문목록 페이지</a></li>
+      <li><a href="#install">설치 방법</a></li>
     </ul>
   </div>
 </nav>
@@ -377,7 +356,7 @@
   </div>
 </section>
 
-<!-- ── STEPS ──────────────────────────────────────────────── -->
+<!-- ── HOW TO USE ─────────────────────────────────────────── -->
 <section id="howto" class="steps">
   <div class="container">
     <div class="steps-header fi">
@@ -385,7 +364,7 @@
       <h2 class="sec-title">4단계면 충분합니다.</h2>
     </div>
 
-    <!-- STEP 1 ── 카드 등록 -->
+    <!-- STEP 1 -->
     <div class="step fi">
       <div class="step-txt">
         <p class="step-num">STEP 01</p>
@@ -400,22 +379,10 @@
       <div class="step-vis">
         <div class="vis-wrap">
           <div class="pm">
-            <div class="pm-head">
-              <div class="pm-badge">W</div>
-              <div class="pm-head-t">
-                <h3>쇼핑 영수증 자동저장</h3>
-                <p>거래명세서 자동 캡처·저장</p>
-              </div>
-            </div>
+            <div class="pm-head"><div class="pm-badge">W</div><div class="pm-head-t"><h3>쇼핑 영수증 자동저장</h3><p>거래명세서 자동 캡처·저장</p></div></div>
             <div class="pm-body">
               <div class="pm-slabel">등록 카드</div>
-              <div class="pm-card">
-                <div class="pm-dot"></div>
-                <div>
-                  <div class="pm-card-name">홍길동 카드</div>
-                  <div class="pm-card-sub">BC카드 · 뒷번호 1234</div>
-                </div>
-              </div>
+              <div class="pm-card"><div class="pm-dot"></div><div><div class="pm-card-name">홍길동 카드</div><div class="pm-card-sub">BC카드 · 뒷번호 1234</div></div></div>
               <div class="pm-add">+ 카드 추가</div>
             </div>
           </div>
@@ -423,7 +390,7 @@
       </div>
     </div>
 
-    <!-- STEP 2 ── 기간 설정 -->
+    <!-- STEP 2 -->
     <div class="step rev fi">
       <div class="step-txt">
         <p class="step-num">STEP 02</p>
@@ -437,24 +404,12 @@
       <div class="step-vis">
         <div class="vis-wrap">
           <div class="pm">
-            <div class="pm-head">
-              <div class="pm-badge">W</div>
-              <div class="pm-head-t">
-                <h3>쇼핑 영수증 자동저장</h3>
-                <p>거래명세서 자동 캡처·저장</p>
-              </div>
-            </div>
+            <div class="pm-head"><div class="pm-badge">W</div><div class="pm-head-t"><h3>쇼핑 영수증 자동저장</h3><p>거래명세서 자동 캡처·저장</p></div></div>
             <div class="pm-body">
               <div class="pm-slabel">조회 기간</div>
               <div class="pm-dates">
-                <div class="pm-date">
-                  <div class="pm-date-lbl">시작일</div>
-                  <div class="pm-date-val">2026-06-01</div>
-                </div>
-                <div class="pm-date">
-                  <div class="pm-date-lbl">종료일</div>
-                  <div class="pm-date-val">2026-06-30</div>
-                </div>
+                <div class="pm-date"><div class="pm-date-lbl">시작일</div><div class="pm-date-val">2026-06-01</div></div>
+                <div class="pm-date"><div class="pm-date-lbl">종료일</div><div class="pm-date-val">2026-06-30</div></div>
               </div>
               <div class="pm-btn">시작</div>
             </div>
@@ -463,15 +418,14 @@
       </div>
     </div>
 
-    <!-- STEP 3 ── 실행 중 -->
+    <!-- STEP 3 -->
     <div class="step fi">
       <div class="step-txt">
         <p class="step-num">STEP 03</p>
         <h3 class="step-title">주문 목록 페이지에서<br>시작합니다.</h3>
         <p class="step-desc">쿠팡 또는 네이버쇼핑 주문 목록 페이지에서 "시작" 버튼을 누르면 자동으로 처리가 시작됩니다.</p>
         <div class="tips">
-          <div class="tip">쿠팡: mc.coupang.com 주문 목록 페이지</div>
-          <div class="tip">네이버: 네이버쇼핑 주문 내역 페이지</div>
+          <div class="tip">반드시 <strong>주문 목록 페이지</strong>에서 실행해야 합니다.</div>
           <div class="tip">처리 중에도 다른 탭을 자유롭게 사용할 수 있습니다.</div>
           <div class="tip">언제든 중단 버튼으로 멈출 수 있습니다.</div>
         </div>
@@ -479,40 +433,20 @@
       <div class="step-vis">
         <div class="vis-wrap">
           <div class="pm">
-            <div class="pm-head">
-              <div class="pm-badge">W</div>
-              <div class="pm-head-t">
-                <h3>쇼핑 영수증 자동저장</h3>
-                <p>처리 중…</p>
-              </div>
-            </div>
+            <div class="pm-head"><div class="pm-badge">W</div><div class="pm-head-t"><h3>쇼핑 영수증 자동저장</h3><p>처리 중…</p></div></div>
             <div class="pm-body">
-              <div class="pm-prog-bar">
-                <div class="pm-prog-fill" style="width:62%"></div>
-              </div>
+              <div class="pm-prog-bar"><div class="pm-prog-fill" style="width:62%"></div></div>
               <div class="pm-status">7 / 11 처리 중</div>
               <div class="pm-slabel">최근 저장</div>
-              <div class="pm-file">
-                <div class="pm-file-icon">🖼</div>
-                <div>
-                  <div class="pm-file-name">260610_31,500원_키보드</div>
-                  <div class="pm-file-sub">✓ 저장 완료</div>
-                </div>
-              </div>
-              <div class="pm-file">
-                <div class="pm-file-icon">🖼</div>
-                <div>
-                  <div class="pm-file-name">260608_12,900원_마우스패드</div>
-                  <div class="pm-file-sub">✓ 저장 완료</div>
-                </div>
-              </div>
+              <div class="pm-file"><div class="pm-file-icon">🖼</div><div><div class="pm-file-name">260610_31,500원_키보드</div><div class="pm-file-sub">✓ 저장 완료</div></div></div>
+              <div class="pm-file"><div class="pm-file-icon">🖼</div><div><div class="pm-file-name">260608_12,900원_마우스패드</div><div class="pm-file-sub">✓ 저장 완료</div></div></div>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- STEP 4 ── 결과 확인 -->
+    <!-- STEP 4 -->
     <div class="step rev fi">
       <div class="step-txt">
         <p class="step-num">STEP 04</p>
@@ -527,40 +461,15 @@
       <div class="step-vis">
         <div class="vis-wrap">
           <div class="fm">
-            <div class="fm-bar">
-              <div class="fm-dot" style="background:#ff5f57"></div>
-              <div class="fm-dot" style="background:#ffbd2e"></div>
-              <div class="fm-dot" style="background:#28c840"></div>
-            </div>
+            <div class="fm-bar"><div class="fm-dot" style="background:#ff5f57"></div><div class="fm-dot" style="background:#ffbd2e"></div><div class="fm-dot" style="background:#28c840"></div></div>
             <div class="fm-body">
-              <div class="fm-row">
-                <span class="fm-icon">📁</span>
-                <span class="fm-name" style="font-weight:600">쇼핑_영수증</span>
-              </div>
-              <div class="fm-row i1">
-                <span class="fm-icon">📂</span>
-                <span class="fm-name">쿠팡_홍길동카드_1234</span>
-              </div>
-              <div class="fm-row i2">
-                <span class="fm-icon">🖼</span>
-                <span class="fm-name dim">260610_31,500원_키보드.png</span>
-              </div>
-              <div class="fm-row i2">
-                <span class="fm-icon">🖼</span>
-                <span class="fm-name dim">260608_12,900원_마우스패드.png</span>
-              </div>
-              <div class="fm-row i1">
-                <span class="fm-icon">📂</span>
-                <span class="fm-name">네이버_홍길동카드_1234</span>
-              </div>
-              <div class="fm-row i2">
-                <span class="fm-icon">🖼</span>
-                <span class="fm-name dim">260605_54,000원_모니터암.png</span>
-              </div>
-              <div class="fm-row i2">
-                <span class="fm-icon">🖼</span>
-                <span class="fm-name dim">260601_8,900원_USB허브.png</span>
-              </div>
+              <div class="fm-row"><span class="fm-icon">📁</span><span class="fm-name" style="font-weight:600">쇼핑_영수증</span></div>
+              <div class="fm-row i1"><span class="fm-icon">📂</span><span class="fm-name">쿠팡_홍길동카드_1234</span></div>
+              <div class="fm-row i2"><span class="fm-icon">🖼</span><span class="fm-name dim">260610_31,500원_키보드.png</span></div>
+              <div class="fm-row i2"><span class="fm-icon">🖼</span><span class="fm-name dim">260608_12,900원_마우스패드.png</span></div>
+              <div class="fm-row i1"><span class="fm-icon">📂</span><span class="fm-name">네이버_홍길동카드_1234</span></div>
+              <div class="fm-row i2"><span class="fm-icon">🖼</span><span class="fm-name dim">260605_54,000원_모니터암.png</span></div>
+              <div class="fm-row i2"><span class="fm-icon">🖼</span><span class="fm-name dim">260601_8,900원_USB허브.png</span></div>
             </div>
           </div>
         </div>
@@ -570,64 +479,292 @@
   </div>
 </section>
 
+<!-- ── WHERE TO USE ───────────────────────────────────────── -->
+<section id="where" class="where">
+  <div class="container">
+    <div class="where-header fi">
+      <p class="sec-label">사용 가능 페이지</p>
+      <h2 class="sec-title">주문 목록 페이지에서만<br>작동합니다.</h2>
+    </div>
+
+    <div class="callout fi">
+      <div class="callout-icon">⚠️</div>
+      <p>이 확장프로그램은 <strong>주문 목록이 보이는 페이지</strong>에서만 실행할 수 있습니다.<br>
+      상품 상세 페이지, 장바구니, 결제 페이지 등 다른 페이지에서는 작동하지 않습니다.</p>
+    </div>
+
+    <div class="shop-grid fi">
+
+      <!-- Coupang -->
+      <div class="shop-block">
+        <div class="shop-block-title">🛒 쿠팡 주문 목록</div>
+        <div class="shop-url">mc.coupang.com → 주문/배송 조회</div>
+        <div class="bw">
+          <div class="bw-bar">
+            <div class="bw-dots"><div class="bw-dot" style="background:#ff5f57"></div><div class="bw-dot" style="background:#ffbd2e"></div><div class="bw-dot" style="background:#28c840"></div></div>
+            <div class="bw-addr">mc.coupang.com/ssr/desktop/order/list</div>
+          </div>
+          <div class="cp-head">
+            <div class="cp-logo">coupang</div>
+            <div class="cp-nav">
+              <span>홈</span>
+              <span class="on">주문/배송 조회</span>
+              <span>정산</span>
+            </div>
+          </div>
+          <div class="cp-body">
+            <div class="cp-order">
+              <div class="cp-order-hd"><span>2026.06.10 주문</span><span>주문번호 1234-5678</span></div>
+              <div class="cp-order-bd">
+                <div class="cp-thumb" style="background:#f0e8ff">⌨️</div>
+                <div class="cp-info">
+                  <div class="cp-name">무선 블루투스 키보드 (화이트)</div>
+                  <div class="cp-price">31,500원</div>
+                  <div class="cp-stat">배송완료</div>
+                </div>
+              </div>
+            </div>
+            <div class="cp-order">
+              <div class="cp-order-hd"><span>2026.06.08 주문</span><span>주문번호 1234-5677</span></div>
+              <div class="cp-order-bd">
+                <div class="cp-thumb" style="background:#e8f0ff">🖱️</div>
+                <div class="cp-info">
+                  <div class="cp-name">논슬립 마우스패드 대형</div>
+                  <div class="cp-price">12,900원</div>
+                  <div class="cp-stat">배송완료</div>
+                </div>
+              </div>
+            </div>
+            <div class="cp-order">
+              <div class="cp-order-hd"><span>2026.06.03 주문</span><span>주문번호 1234-5670</span></div>
+              <div class="cp-order-bd">
+                <div class="cp-thumb" style="background:#e8fff0">🔌</div>
+                <div class="cp-info">
+                  <div class="cp-name">USB-C 허브 7포트</div>
+                  <div class="cp-price">28,000원</div>
+                  <div class="cp-stat">배송완료</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Naver -->
+      <div class="shop-block">
+        <div class="shop-block-title">🛍 네이버쇼핑 주문 내역</div>
+        <div class="shop-url">shopping.naver.com → 주문 내역</div>
+        <div class="bw">
+          <div class="bw-bar">
+            <div class="bw-dots"><div class="bw-dot" style="background:#ff5f57"></div><div class="bw-dot" style="background:#ffbd2e"></div><div class="bw-dot" style="background:#28c840"></div></div>
+            <div class="bw-addr">shopping.naver.com/order/list</div>
+          </div>
+          <div class="nv-head">
+            <div class="nv-logo">NAVER</div>
+            <div style="color:rgba(255,255,255,.8);font-size:11px;margin-left:auto">쇼핑</div>
+          </div>
+          <div class="nv-sub-nav">
+            <span class="on">주문 내역</span>
+            <span>찜한 상품</span>
+            <span>최근 본 상품</span>
+          </div>
+          <div class="nv-body">
+            <div class="nv-order">
+              <div class="nv-order-top"><span class="dt">2026.06.05</span><span class="st">배송완료</span></div>
+              <div class="nv-order-bd">
+                <div class="nv-thumb" style="background:#f0f0ff">🖥️</div>
+                <div class="nv-info">
+                  <div class="nv-name">모니터암 듀얼 스탠드</div>
+                  <div class="nv-price">54,000원</div>
+                </div>
+              </div>
+            </div>
+            <div class="nv-order">
+              <div class="nv-order-top"><span class="dt">2026.06.01</span><span class="st">배송완료</span></div>
+              <div class="nv-order-bd">
+                <div class="nv-thumb" style="background:#fff0f0">🔌</div>
+                <div class="nv-info">
+                  <div class="nv-name">USB 허브 4포트 (블랙)</div>
+                  <div class="nv-price">8,900원</div>
+                </div>
+              </div>
+            </div>
+            <div class="nv-order">
+              <div class="nv-order-top"><span class="dt">2026.05.28</span><span class="st">배송완료</span></div>
+              <div class="nv-order-bd">
+                <div class="nv-thumb" style="background:#f0fff0">💡</div>
+                <div class="nv-info">
+                  <div class="nv-name">LED 스탠드 조명</div>
+                  <div class="nv-price">22,500원</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- ── INSTALL ────────────────────────────────────────────── -->
 <section id="install" class="install">
   <div class="container">
     <div class="install-header fi">
       <p class="sec-label">설치 방법</p>
-      <h2 class="sec-title">3분이면 됩니다.</h2>
+      <h2 class="sec-title">처음 설치해도<br>어렵지 않습니다.</h2>
     </div>
-    <div class="install-steps">
-      <div class="install-card fi">
-        <div class="install-num">1</div>
-        <h3>파일 준비</h3>
-        <p>확장프로그램 폴더를 원하는 위치에 저장합니다.</p>
-      </div>
-      <div class="install-card fi">
-        <div class="install-num">2</div>
-        <h3>Chrome 설정 열기</h3>
-        <p>주소창에 <span class="code">chrome://extensions</span> 를 입력하고 "개발자 모드"를 켭니다.</p>
-      </div>
-      <div class="install-card fi">
-        <div class="install-num">3</div>
-        <h3>폴더 불러오기</h3>
-        <p>"압축해제된 확장 프로그램을 로드합니다"를 클릭하고 폴더를 선택합니다.</p>
-      </div>
-      <div class="install-card fi">
-        <div class="install-num">4</div>
-        <h3>아이콘 고정</h3>
-        <p>Chrome 도구 모음의 퍼즐 아이콘을 클릭하고 고정 아이콘(📌)을 눌러 고정합니다.</p>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- ── SUPPORT ────────────────────────────────────────────── -->
-<section id="support" class="support">
-  <div class="container">
-    <div class="support-header fi">
-      <p class="sec-label">지원 쇼핑몰</p>
-      <h2 class="sec-title">두 곳을 지원합니다.</h2>
-    </div>
-    <div class="support-grid fi">
-      <div class="support-card">
-        <h3>🛒 쿠팡</h3>
-        <p>기업 전용 쿠팡(mc.coupang.com)의 주문 목록에서 작동합니다. 주문 상세 페이지에서 카드사를 확인하고 거래명세서를 자동 캡처합니다.</p>
-        <div class="tags">
-          <span class="tag">mc.coupang.com</span>
-          <span class="tag">거래명세서</span>
-          <span class="tag">카드사 검증</span>
+    <div class="inst-list">
+
+      <!-- STEP 1: 폴더 준비 -->
+      <div class="inst-step fi">
+        <div class="inst-num">1</div>
+        <div class="inst-txt">
+          <h3>확장프로그램 폴더를 받습니다</h3>
+          <p>담당자에게서 받은 폴더(또는 압축 파일)를 컴퓨터의 원하는 위치에 저장합니다.<br>
+          압축 파일이라면 먼저 압축을 풀어 폴더 형태로 만들어 주세요.</p>
+          <div class="warn">⚠️ 나중에 폴더를 옮기면 확장프로그램이 오류가 날 수 있습니다. 최종 위치에 저장하세요.</div>
+        </div>
+        <div class="inst-vis">
+          <div class="v-picker">
+            <div class="v-picker-title">📂 확장프로그램 폴더</div>
+            <div class="v-picker-body">
+              <div class="v-picker-row"><div class="v-picker-icon">🗂️</div><div class="v-picker-name">문서</div></div>
+              <div class="v-picker-row sel"><div class="v-picker-icon">📂</div><div class="v-picker-name hl">wm_mwg_auto_receipt</div></div>
+              <div class="v-picker-row" style="padding-left:32px"><div class="v-picker-icon" style="font-size:13px">📄</div><div class="v-picker-name" style="font-size:11px;color:#6e6e73">manifest.json</div></div>
+              <div class="v-picker-row" style="padding-left:32px"><div class="v-picker-icon" style="font-size:13px">📄</div><div class="v-picker-name" style="font-size:11px;color:#6e6e73">background.js</div></div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="support-card">
-        <h3>🛍 네이버쇼핑</h3>
-        <p>네이버쇼핑 주문 내역에서 카드영수증을 자동으로 열고 캡처합니다. 카드사와 뒷 4자리를 모두 검증한 뒤 저장합니다.</p>
-        <div class="tags">
-          <span class="tag">shopping.naver.com</span>
-          <span class="tag">카드영수증</span>
-          <span class="tag">뒷번호 검증</span>
+
+      <!-- STEP 2: chrome://extensions -->
+      <div class="inst-step fi">
+        <div class="inst-num">2</div>
+        <div class="inst-txt">
+          <h3>Chrome 확장프로그램 관리 페이지를 엽니다</h3>
+          <p>Chrome 브라우저를 열고 주소창을 클릭한 뒤, 아래 주소를 그대로 복사하여 붙여넣고 Enter를 누릅니다.</p>
+          <div style="margin-top:12px"><span class="code">chrome://extensions</span></div>
+          <div class="warn">⚠️ 검색창이 아닌 <strong>주소창</strong>에 입력해야 합니다.</div>
+        </div>
+        <div class="inst-vis">
+          <div class="v-browser">
+            <div class="v-bbar">
+              <div class="v-bdots"><div class="v-bdot" style="background:#ff5f57"></div><div class="v-bdot" style="background:#ffbd2e"></div><div class="v-bdot" style="background:#28c840"></div></div>
+              <div class="v-baddr"><span class="hl">chrome://extensions</span></div>
+            </div>
+            <div class="v-bcontent" style="padding:20px;font-size:13px;color:#6e6e73">
+              Enter 키를 누르세요 →
+            </div>
+          </div>
         </div>
       </div>
+
+      <!-- STEP 3: 개발자 모드 -->
+      <div class="inst-step fi">
+        <div class="inst-num">3</div>
+        <div class="inst-txt">
+          <h3>개발자 모드를 켭니다</h3>
+          <p>확장프로그램 관리 페이지 오른쪽 위에 있는 <strong>"개발자 모드"</strong> 토글을 클릭하여 켭니다.<br>
+          켜지면 토글이 파란색으로 바뀌고 새로운 버튼 3개가 나타납니다.</p>
+        </div>
+        <div class="inst-vis">
+          <div class="v-ext">
+            <div class="v-ext-bar">
+              <div class="v-bdots"><div class="v-bdot" style="background:#ff5f57"></div><div class="v-bdot" style="background:#ffbd2e"></div><div class="v-bdot" style="background:#28c840"></div></div>
+            </div>
+            <div class="v-ext-title">
+              <span>확장 프로그램</span>
+              <div class="v-devmode"><span>개발자 모드</span><div class="v-toggle on"></div></div>
+            </div>
+            <div class="v-ext-actions">
+              <div class="v-ext-btn hl">압축해제된 확장 프로그램을 로드합니다</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 4: 폴더 선택 -->
+      <div class="inst-step fi">
+        <div class="inst-num">4</div>
+        <div class="inst-txt">
+          <h3>"압축해제된 확장 프로그램을 로드합니다" 버튼을 클릭합니다</h3>
+          <p>버튼을 클릭하면 폴더 선택 창이 열립니다.<br>
+          1단계에서 저장해 둔 확장프로그램 폴더를 찾아 선택하고 <strong>"폴더 선택"</strong> 버튼을 클릭합니다.</p>
+          <div class="warn">⚠️ 폴더 안의 파일이 아닌 <strong>폴더 자체</strong>를 선택해야 합니다.</div>
+        </div>
+        <div class="inst-vis">
+          <div class="v-picker">
+            <div class="v-picker-title">📂 폴더 선택</div>
+            <div class="v-picker-body">
+              <div class="v-picker-row"><div class="v-picker-icon">🗂️</div><div class="v-picker-name">문서</div></div>
+              <div class="v-picker-row sel"><div class="v-picker-icon">📂</div><div class="v-picker-name hl">wm_mwg_auto_receipt ✓</div></div>
+            </div>
+            <div class="v-picker-footer">
+              <div class="v-picker-foot-btn">취소</div>
+              <div class="v-picker-foot-btn primary">폴더 선택</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 5: 설치 확인 -->
+      <div class="inst-step fi">
+        <div class="inst-num">5</div>
+        <div class="inst-txt">
+          <h3>확장프로그램이 목록에 나타나는지 확인합니다</h3>
+          <p>설치가 완료되면 확장프로그램 관리 페이지에 <strong>"쇼핑 영수증 자동저장"</strong> 카드가 나타납니다.<br>
+          카드 오른쪽 하단의 토글이 파란색인지 확인하세요. 회색이면 클릭하여 켭니다.</p>
+        </div>
+        <div class="inst-vis">
+          <div class="v-ext">
+            <div class="v-ext-bar">
+              <div class="v-bdots"><div class="v-bdot" style="background:#ff5f57"></div><div class="v-bdot" style="background:#ffbd2e"></div><div class="v-bdot" style="background:#28c840"></div></div>
+            </div>
+            <div class="v-ext-title"><span>확장 프로그램</span></div>
+            <div class="v-ext-card">
+              <div class="v-ext-card-top">
+                <div class="v-ext-card-icon">W</div>
+                <div class="v-ext-card-name">쇼핑 영수증 자동저장</div>
+                <div class="v-ext-card-toggle"><div class="v-toggle on"></div></div>
+              </div>
+              <div class="v-ext-card-id">거래명세서 자동 캡처·저장</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 6: 아이콘 고정 -->
+      <div class="inst-step fi">
+        <div class="inst-num">6</div>
+        <div class="inst-txt">
+          <h3>툴바에 아이콘을 고정합니다</h3>
+          <p>Chrome 주소창 오른쪽의 <strong>퍼즐 모양 아이콘(🧩)</strong>을 클릭합니다.<br>
+          목록에서 <strong>"쇼핑 영수증 자동저장"</strong>을 찾아 오른쪽의 <strong>📌 핀 아이콘</strong>을 클릭하면<br>
+          툴바에 W 아이콘이 항상 보이게 됩니다.</p>
+        </div>
+        <div class="inst-vis">
+          <div class="v-toolbar">
+            <div class="v-tb-bar">
+              <div class="v-bdots"><div class="v-bdot" style="background:#ff5f57"></div><div class="v-bdot" style="background:#ffbd2e"></div><div class="v-bdot" style="background:#28c840"></div></div>
+              <div class="v-tb-addr">shopping.naver.com</div>
+              <div class="v-tb-icons">
+                <div class="v-tb-icon w-icon">W</div>
+                <div class="v-tb-icon puzzle">🧩</div>
+              </div>
+            </div>
+            <div class="v-dropdown">
+              <div class="v-dd-item hl">
+                <div class="v-dd-icon">W</div>
+                <div class="v-dd-name">쇼핑 영수증 자동저장</div>
+                <div class="v-dd-pin on">📌</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -640,7 +777,7 @@
 <script>
   const obs = new IntersectionObserver(
     entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); }),
-    { threshold: 0.12 }
+    { threshold: 0.1 }
   );
   document.querySelectorAll('.fi').forEach(el => obs.observe(el));
 </script>
