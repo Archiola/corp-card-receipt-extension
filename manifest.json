@@ -1,0 +1,61 @@
+{
+  "manifest_version": 3,
+  "name": "법인카드 거래명세서 자동저장",
+  "short_name": "법인카드 증빙",
+  "version": "1.2.0",
+  "description": "쿠팡(mc)·네이버쇼핑 법인카드 거래명세서를 백그라운드에서 자동 캡처·저장합니다.",
+
+  "permissions": [
+    "storage",
+    "downloads",
+    "activeTab",
+    "scripting",
+    "tabs",
+    "windows"
+  ],
+
+  "host_permissions": [
+    "https://mc.coupang.com/*",
+    "https://shopping.naver.com/*",
+    "https://order.pay.naver.com/*",
+    "https://pay.naver.com/*"
+  ],
+
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "법인카드 거래명세서 자동저장",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+
+  "background": {
+    "service_worker": "background.js"
+  },
+
+  "content_scripts": [
+    {
+      "matches": [
+        "https://mc.coupang.com/*",
+        "https://shopping.naver.com/*"
+      ],
+      "js": [
+        "libs/html2canvas.min.js",
+        "parsers/coupang.js",
+        "parsers/naverpay.js",
+        "parsers/index.js",
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+
+  "web_accessible_resources": [
+    {
+      "resources": ["icons/*.png"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

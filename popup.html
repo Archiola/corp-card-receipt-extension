@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>법인카드 거래명세서 자동저장</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+
+  <!-- ── 헤더 ── -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="header-badge" aria-hidden="true">W</div>
+      <div class="header-text">
+        <h1>법인카드 거래명세서 자동저장</h1>
+        <p>법인카드 증빙 자동저장</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── 탭 내비게이션 ── -->
+  <nav class="tab-bar" role="tablist">
+    <button class="tab-btn active" data-tab="cards" role="tab" aria-selected="true">
+      카드 관리
+    </button>
+    <button class="tab-btn" data-tab="extract" role="tab" aria-selected="false">
+      추출 실행
+    </button>
+  </nav>
+
+  <!-- ══════════════════════════════════════
+       탭 1: 카드 관리
+  ══════════════════════════════════════ -->
+  <div id="tab-cards" class="tab-panel" role="tabpanel">
+
+    <!-- 카드 목록 (JS로 채워짐) -->
+    <div id="card-list-wrap">
+      <div id="card-list"></div>
+    </div>
+
+    <!-- 카드 추가 버튼 -->
+    <div class="add-card-bar">
+      <button id="btn-add-card" class="btn btn-add" type="button">
+        + 카드 추가
+      </button>
+    </div>
+
+    <!-- 카드 추가 / 수정 폼 (기본 숨김) -->
+    <div id="card-form" class="card-form" hidden>
+      <div class="form-title" id="form-title-text">카드 추가</div>
+
+      <div class="form-row">
+        <label for="f-alias">
+          카드 별칭 <span class="req" aria-hidden="true">*</span>
+        </label>
+        <input
+          type="text" id="f-alias"
+          placeholder="예: 홍길동 법인카드"
+          maxlength="20" autocomplete="off"
+        >
+        <span class="field-hint">결제 증빙 폴더명에 사용됩니다</span>
+      </div>
+
+      <div class="form-row">
+        <label for="f-company">
+          카드사 <span class="req" aria-hidden="true">*</span>
+        </label>
+        <select id="f-company">
+          <option value="">-- 카드사 선택 --</option>
+          <!-- JS에서 동적 생성 -->
+        </select>
+      </div>
+
+      <div class="form-row">
+        <label for="f-last-four">
+          카드 뒷번호 4자리 <span class="req" aria-hidden="true">*</span>
+        </label>
+        <input
+          type="text" id="f-last-four"
+          placeholder="예: 1234"
+          maxlength="4" inputmode="numeric" autocomplete="off"
+        >
+      </div>
+
+      <div class="form-actions">
+        <button id="btn-form-cancel" class="btn btn-ghost" type="button">취소</button>
+        <button id="btn-form-save"   class="btn btn-primary" type="button">저장</button>
+      </div>
+    </div>
+
+  </div><!-- /tab-cards -->
+
+  <!-- ══════════════════════════════════════
+       탭 2: 추출 실행
+  ══════════════════════════════════════ -->
+  <div id="tab-extract" class="tab-panel" role="tabpanel" hidden>
+
+    <!-- ── 카드 선택 ── -->
+    <section class="ex-section">
+      <div class="ex-section-hd">
+        <h3 class="ex-section-title">카드 선택</h3>
+        <button id="btn-select-all" class="link-btn" type="button">전체 선택</button>
+      </div>
+      <div id="card-checkboxes">
+        <!-- JS로 채워짐 -->
+      </div>
+    </section>
+
+    <!-- ── 기간 설정 ── -->
+    <section class="ex-section">
+      <h3 class="ex-section-title">기간 설정</h3>
+
+      <div class="period-grid" role="radiogroup" aria-label="기간 선택">
+        <label class="radio-label">
+          <input type="radio" name="period" value="all">
+          <span class="radio-box"></span>
+          전체 기간
+        </label>
+        <label class="radio-label">
+          <input type="radio" name="period" value="this-month">
+          <span class="radio-box"></span>
+          이번 달
+        </label>
+        <label class="radio-label">
+          <input type="radio" name="period" value="last-month">
+          <span class="radio-box"></span>
+          지난 달
+        </label>
+        <label class="radio-label">
+          <input type="radio" name="period" value="this-week">
+          <span class="radio-box"></span>
+          이번 주
+        </label>
+        <label class="radio-label">
+          <input type="radio" name="period" value="last-week">
+          <span class="radio-box"></span>
+          지난 주
+        </label>
+        <label class="radio-label radio-custom">
+          <input type="radio" name="period" value="custom">
+          <span class="radio-box"></span>
+          직접 설정
+        </label>
+      </div>
+
+      <!-- 직접 설정 날짜 입력 (기본 숨김) -->
+      <div id="custom-date-range" class="custom-date-range" hidden>
+        <input type="date" id="date-start" class="date-input" aria-label="시작일">
+        <span class="date-sep">~</span>
+        <input type="date" id="date-end" class="date-input" aria-label="종료일">
+      </div>
+
+    </section>
+
+    <!-- ── 전체 캡처 모드 토글 ── -->
+    <div class="all-capture-bar">
+      <div class="all-capture-info">
+        <span class="all-capture-title">전체 캡처 모드</span>
+        <span class="all-capture-desc">카드 매칭 없이 기간 내 모든 거래명세서 캡처</span>
+      </div>
+      <label class="toggle-label" for="toggle-all-capture" aria-label="전체 캡처 모드 토글">
+        <input type="checkbox" id="toggle-all-capture">
+        <span class="toggle-track"><span class="toggle-thumb"></span></span>
+      </label>
+    </div>
+
+    <!-- ── 추출 버튼 ── -->
+    <div class="extract-bar">
+      <button id="btn-extract" class="btn btn-extract" type="button" disabled>
+        <div class="btn-spinner" aria-hidden="true"></div>
+        <span class="btn-label">증빙 추출 시작</span>
+      </button>
+      <button id="btn-stop" class="btn btn-stop" type="button" hidden>
+        ■ 추출 중지
+      </button>
+    </div>
+
+  </div><!-- /tab-extract -->
+
+  <!-- ── 상태 표시줄 ── -->
+  <div id="status-bar" class="status-bar" role="status" aria-live="polite" hidden>
+    <div class="status-dot"></div>
+    <span id="status-text"></span>
+  </div>
+
+  <!-- ── 푸터 ── -->
+  <footer class="footer">v1.2.0 &nbsp;|&nbsp; 문의: 민원규(qwas019@wm.co.kr)</footer>
+
+  <script src="popup.js"></script>
+</body>
+</html>
