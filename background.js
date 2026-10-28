@@ -275,6 +275,7 @@ chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
           target: { tabId },
           func: (cardsToMatch, companies) => new Promise(async (resolve) => {
             // 원본 url은 hist URL이므로 실제 탭 URL로 판별
+            const isCoupangPage   = window.location.href.includes('mc.coupang.com');
             const isNaverCardPage = window.location.href.includes('pay.naver.com/receipts/preview/card');
             const text = document.body?.innerText || document.body?.textContent || '';
 
@@ -329,9 +330,12 @@ chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
                   card.company === extractedCardCompany && card.lastFour === extractedLastFour
                 );
               }
-            } else {
+            } else if (isCoupangPage) {
               // 쿠팡: 주문상세 fetch에서 이미 카드사 검증 완료 → 항상 통과
               matched = true;
+            } else {
+              // 네이버 카드영수증 리다이렉트 실패 등 — 카드 정보 검증 불가 → 안전하게 스킵
+              matched = false;
             }
 
             // ── 4단계: 캡처 ────────────────────────────────────────────────────────

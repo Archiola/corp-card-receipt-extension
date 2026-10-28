@@ -278,12 +278,38 @@
     /* install "code" style */
     .code { display: inline-block; background: var(--c-bg2); border-radius: 6px; padding: 2px 8px; font-family: 'SF Mono', Menlo, monospace; font-size: 12px; color: #1d1d1f; }
 
+    /* ── CHROME LINK ─────────────────────────────────────── */
+    .chrome-link {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: var(--c-accent); color: #fff;
+      border-radius: 10px; padding: 9px 18px;
+      font-size: 14px; font-weight: 600; cursor: pointer;
+      border: none; margin-top: 14px;
+      transition: background .15s, transform .1s;
+      text-decoration: none;
+    }
+    .chrome-link:hover { background: #005dc1; transform: translateY(-1px); }
+    .chrome-link:active { transform: none; }
+    .chrome-link-copied {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: #34c759; color: #fff;
+      border-radius: 10px; padding: 9px 18px;
+      font-size: 14px; font-weight: 600; margin-top: 14px;
+    }
+    .code.clickable {
+      cursor: pointer; color: var(--c-accent);
+      border-bottom: 1.5px dashed var(--c-accent);
+      transition: opacity .15s;
+    }
+    .code.clickable:hover { opacity: .7; }
+
     /* ── FOOTER ──────────────────────────────────────────── */
     footer { text-align: center; padding: 44px 28px; font-size: 12px; color: var(--c-sub); border-top: 1px solid var(--c-border); }
 
     /* ── FADE IN ─────────────────────────────────────────── */
-    .fi { opacity: 0; transform: translateY(28px); transition: opacity .65s ease, transform .65s ease; }
-    .fi.on { opacity: 1; transform: none; }
+    /* js-ready 클래스가 없으면 항상 보이도록 (JS 실행 전 빈화면 방지) */
+    .js-ready .fi { opacity: 0; transform: translateY(28px); transition: opacity .65s ease, transform .65s ease; }
+    .js-ready .fi.on { opacity: 1; transform: none; }
 
     /* ── RESPONSIVE ──────────────────────────────────────── */
     @media (max-width: 860px) {
@@ -644,9 +670,13 @@
         <div class="inst-num">2</div>
         <div class="inst-txt">
           <h3>Chrome 확장프로그램 관리 페이지를 엽니다</h3>
-          <p>Chrome 브라우저를 열고 주소창을 클릭한 뒤, 아래 주소를 그대로 복사하여 붙여넣고 Enter를 누릅니다.</p>
-          <div style="margin-top:12px"><span class="code">chrome://extensions</span></div>
-          <div class="warn">⚠️ 검색창이 아닌 <strong>주소창</strong>에 입력해야 합니다.</div>
+          <p>아래 버튼을 클릭하면 주소가 자동으로 복사됩니다.<br>복사된 주소를 Chrome <strong>주소창</strong>에 붙여넣기(Ctrl+V) 후 Enter를 누르세요.</p>
+          <div style="margin-top:4px">
+            <button class="chrome-link" id="openExtBtn" onclick="openExtensionsPage(this)">
+              📋 chrome://extensions 주소 복사
+            </button>
+          </div>
+          <div class="warn">⚠️ 검색창이 아닌 <strong>주소창</strong>에 붙여넣기 해야 합니다.</div>
         </div>
         <div class="inst-vis">
           <div class="v-browser">
@@ -654,8 +684,8 @@
               <div class="v-bdots"><div class="v-bdot" style="background:#ff5f57"></div><div class="v-bdot" style="background:#ffbd2e"></div><div class="v-bdot" style="background:#28c840"></div></div>
               <div class="v-baddr"><span class="hl">chrome://extensions</span></div>
             </div>
-            <div class="v-bcontent" style="padding:20px;font-size:13px;color:#6e6e73">
-              Enter 키를 누르세요 →
+            <div class="v-bcontent" style="padding:16px;font-size:12px;color:#6e6e73;text-align:center">
+              버튼으로 주소 복사 후<br>주소창에 붙여넣기 →
             </div>
           </div>
         </div>
@@ -775,11 +805,26 @@
 </footer>
 
 <script>
+  // JS가 실행될 때만 fade-in 활성화 (없으면 기본 표시)
+  document.body.classList.add('js-ready');
   const obs = new IntersectionObserver(
     entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); }),
-    { threshold: 0.1 }
+    { threshold: 0.1, rootMargin: '0px 0px -10px 0px' }
   );
   document.querySelectorAll('.fi').forEach(el => obs.observe(el));
+
+  function openExtensionsPage(btn) {
+    navigator.clipboard.writeText('chrome://extensions').then(() => {
+      if (btn) {
+        const orig = btn.innerHTML;
+        btn.innerHTML = '✓ 복사 완료! 주소창에 붙여넣기 하세요';
+        btn.style.background = '#34c759';
+        setTimeout(() => { btn.innerHTML = orig; btn.style.background = ''; }, 3000);
+      }
+    }).catch(() => {
+      alert('Chrome 주소창에 다음을 입력하세요:\nchrome://extensions');
+    });
+  }
 </script>
 </body>
 </html>

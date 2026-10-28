@@ -128,6 +128,12 @@ function bindEvents() {
     refreshExtractButton();
   });
 
+  // 사용 설명서 링크
+  document.getElementById('btn-guide').addEventListener('click', e => {
+    e.preventDefault();
+    chrome.tabs.create({ url: chrome.runtime.getURL('guide.html') });
+  });
+
   // 중지 버튼
   document.getElementById('btn-stop').addEventListener('click', async () => {
     const btn = document.getElementById('btn-stop');
